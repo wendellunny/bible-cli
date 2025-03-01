@@ -1,0 +1,49 @@
+package Domain.Entities;
+
+public class Bible {
+    protected int id;
+    protected String translation;
+    protected Book[] books;
+
+    /**
+     * Constructor method
+     *
+     * @param id int
+     * @param translation String
+     */
+    public Bible(int id, String translation, Book[] books)
+    {
+        this.id = id;
+        this.translation = translation;
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public int getId()
+    {
+        return this.id;
+    }
+
+    /**
+     * Get translation
+     *
+     * @return String
+     */
+    public String getTranslation()
+    {
+        return this.translation;
+    }
+
+    /**
+     * Get books
+     *
+     * @return Book[]
+     */
+    public Book[] getBooks()
+    {
+        return this.books;
+    }
+}
