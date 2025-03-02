@@ -98,7 +98,6 @@ public class App extends AbstractApp {
         this.listBooksOnScreen.run(bible);
     }
 
-
     /**
      * Write message
      *
