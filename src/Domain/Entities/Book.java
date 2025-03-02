@@ -4,7 +4,6 @@ public class Book {
     protected int id;
     protected String name;
     protected Bible bible;
-    protected Chapter[] chapters;
 
     /**
      * Constructor method
@@ -12,11 +11,10 @@ public class Book {
      * @param id int
      * @param name String
      */
-    public Book(int id, String name, Chapter[] chapters)
+    public Book(int id, String name)
     {
         this.id = id;
         this.name = name;
-        this.chapters = chapters;
     }
 
     /**
@@ -47,15 +45,5 @@ public class Book {
     public Bible getBible()
     {
         return this.bible;
-    }
-
-    /**
-     * Get chapters
-     *
-     * @return Chapter[]
-     */
-    public Chapter[] getChapters()
-    {
-        return this.chapters;
     }
 }

@@ -2,6 +2,8 @@ package Domain.Api.Repositories;
 
 import Domain.Entities.Bible;
 
+import java.util.List;
+
 public interface BibleRepository
 {
     /**
@@ -9,5 +11,5 @@ public interface BibleRepository
      *
      * @return Bible[]
      */
-    public Bible[] fetchAll();
+    public List<Bible> fetchAll();
 }

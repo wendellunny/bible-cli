@@ -3,6 +3,8 @@ package Domain.UseCases;
 import Domain.Api.Repositories.BibleRepository;
 import Domain.Entities.Bible;
 
+import java.util.List;
+
 public class ListBibles
 {
     protected BibleRepository bibleRepository;
@@ -20,9 +22,9 @@ public class ListBibles
     /**
      * Handle list bibles use case
      *
-     * @return Bible
+     * @return Bible[]
      */
-    public Bible[] handle()
+    public List<Bible> handle()
     {
         return this.bibleRepository.fetchAll();
     }

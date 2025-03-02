@@ -3,7 +3,6 @@ package Domain.Entities;
 public class Bible {
     protected int id;
     protected String translation;
-    protected Book[] books;
 
     /**
      * Constructor method
@@ -11,7 +10,7 @@ public class Bible {
      * @param id int
      * @param translation String
      */
-    public Bible(int id, String translation, Book[] books)
+    public Bible(int id, String translation)
     {
         this.id = id;
         this.translation = translation;
@@ -35,15 +34,5 @@ public class Bible {
     public String getTranslation()
     {
         return this.translation;
-    }
-
-    /**
-     * Get books
-     *
-     * @return Book[]
-     */
-    public Book[] getBooks()
-    {
-        return this.books;
     }
 }
