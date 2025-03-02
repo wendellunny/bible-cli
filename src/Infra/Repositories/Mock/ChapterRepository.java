@@ -24,4 +24,16 @@ public class ChapterRepository implements Domain.Api.Repositories.ChapterReposit
 
         return chapters;
     }
+
+    /**
+     * Load chapter by number
+     *
+     * @param book Book
+     * @param number int
+     * @return Chapter
+     */
+    @Override
+    public Chapter loadByNumber(Book book, int number) {
+        return new Chapter(1,  number, book);
+    }
 }
