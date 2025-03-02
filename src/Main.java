@@ -1,5 +1,7 @@
 import App.AbstractApp;
 import App.Cli.Command.ListBiblesOnScreen;
+import App.Cli.Command.ShowBibleOnScreen;
+import Domain.UseCases.AccessBible;
 import Domain.UseCases.ListBibles;
 import Infra.Repositories.Mock.BibleRepository;
 
@@ -13,8 +15,12 @@ public class Main {
             listBibles
         );
 
+        AccessBible accessBible = new AccessBible(bibleRepository);
+        ShowBibleOnScreen showBibleOnScreen = new ShowBibleOnScreen(accessBible);
+
         AbstractApp app = new App.Cli.Bootstrap.App(
-            listBiblesOnScreen
+            listBiblesOnScreen,
+            showBibleOnScreen
         );
 
         app.run();
