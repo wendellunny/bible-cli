@@ -27,4 +27,15 @@ public class BookRepository implements Domain.Api.Repositories.BookRepository {
 
         return books;
     }
+
+    /**
+     * Load book by id
+     *
+     * @param id int
+     * @return Book
+     */
+    @Override
+    public Book loadById(int id) {
+        return new Book(1, "Gênesis");
+    }
 }
