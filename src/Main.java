@@ -29,12 +29,16 @@ public class Main {
         ListChapters listChapters = new ListChapters(chapterRepository);
         ListChaptersOnScreen listChaptersOnScreen = new ListChaptersOnScreen(listChapters);
 
+        AccessChapter accessChapter = new AccessChapter(chapterRepository);
+        ShowChapterOnScreen showChapterOnScreen = new ShowChapterOnScreen(accessChapter);
+
         AbstractApp app = new App.Cli.Bootstrap.App(
             listBiblesOnScreen,
             showBibleOnScreen,
             listBooksOnScreen,
             showBookOnScreen,
-            listChaptersOnScreen
+            listChaptersOnScreen,
+            showChapterOnScreen
         );
 
         app.run();
