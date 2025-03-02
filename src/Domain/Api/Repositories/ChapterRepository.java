@@ -13,4 +13,12 @@ public interface ChapterRepository {
      * @return Chapter[]
      */
     public List<Chapter> fetchByBook(Book book);
+
+    /**
+     * Load chapter by number
+     *
+     * @param number int
+     * @return Chapter
+     */
+    public Chapter loadByNumber(int number);
 }
