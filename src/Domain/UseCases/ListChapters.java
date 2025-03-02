@@ -6,7 +6,7 @@ import Domain.Entities.Chapter;
 
 import java.util.List;
 
-class ListChapters
+public class ListChapters
 {
     protected ChapterRepository chapterRepository;
 

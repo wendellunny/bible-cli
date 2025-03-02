@@ -1,10 +1,7 @@
 package App.Cli.Bootstrap;
 
-import App.Cli.Command.ListBiblesOnScreen;
+import App.Cli.Command.*;
 import App.AbstractApp;
-import App.Cli.Command.ListBooksOnScreen;
-import App.Cli.Command.ShowBibleOnScreen;
-import App.Cli.Command.ShowBookOnScreen;
 import Domain.Entities.Bible;
 import Domain.Entities.Book;
 
@@ -16,6 +13,7 @@ public class App extends AbstractApp {
     private final ShowBibleOnScreen showBibleOnScreen;
     private final ListBooksOnScreen listBooksOnScreen;
     private final ShowBookOnScreen showBookOnScreen;
+    private final ListChaptersOnScreen listChaptersOnScreen;
 
     /**
      * Constructor method
@@ -24,17 +22,20 @@ public class App extends AbstractApp {
      * @param showBibleOnScreen ShowBibleOnScreen
      * @param listBooksOnScreen ListBooksOnScreen
      * @param showBookOnScreen ShowBookOnScreen
+     * @param listChaptersOnScreen ListChaptersOnScreen
      */
     public App(
         ListBiblesOnScreen listBiblesOnScreen,
         ShowBibleOnScreen showBibleOnScreen,
         ListBooksOnScreen listBooksOnScreen,
-        ShowBookOnScreen showBookOnScreen
+        ShowBookOnScreen showBookOnScreen,
+        ListChaptersOnScreen listChaptersOnScreen
     ) {
         this.listBiblesOnScreen = listBiblesOnScreen;
         this.showBibleOnScreen = showBibleOnScreen;
         this.listBooksOnScreen = listBooksOnScreen;
         this.showBookOnScreen = showBookOnScreen;
+        this.listChaptersOnScreen = listChaptersOnScreen;
     }
 
     /**
@@ -54,9 +55,8 @@ public class App extends AbstractApp {
         this.showAllBooks(bible);
 
         bookId = this.inputId();
-        System.out.println(bookId);
         Book book = this.showBookOnScreen.run(bookId);
-
+        this.showAllChapters(book);
     }
 
     /**
@@ -96,6 +96,12 @@ public class App extends AbstractApp {
     {
         this.message("Qual livro da bíblia você vai ler hoje?");
         this.listBooksOnScreen.run(bible);
+    }
+
+    protected void showAllChapters(Book book)
+    {
+        this.message("Escolha o capítulo");
+        this.listChaptersOnScreen.run(book);
     }
 
     /**
