@@ -20,5 +20,5 @@ public interface ChapterRepository {
      * @param number int
      * @return Chapter
      */
-    public Chapter loadByNumber(int number);
+    public Chapter loadByNumber(Book book, int number);
 }

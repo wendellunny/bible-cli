@@ -1,6 +1,7 @@
 package Domain.UseCases;
 
 import Domain.Api.Repositories.ChapterRepository;
+import Domain.Entities.Book;
 import Domain.Entities.Chapter;
 
 public class AccessChapter {
@@ -19,11 +20,12 @@ public class AccessChapter {
     /**
      * Handle Access chapter use case
      *
+     * @param book Book
      * @param number int
      * @return Chapter
      */
-    public Chapter handle(int number)
+    public Chapter handle(Book book, int number)
     {
-        return this.chapterRepository.loadByNumber(number);
+        return this.chapterRepository.loadByNumber(book, number);
     }
 }
