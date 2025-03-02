@@ -7,7 +7,6 @@ import Domain.Entities.Bible;
 import Domain.Entities.Book;
 import Domain.Entities.Chapter;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class App extends AbstractApp implements ChapterChoices {
@@ -20,6 +19,7 @@ public class App extends AbstractApp implements ChapterChoices {
     private final ListChaptersOnScreen listChaptersOnScreen;
     private final ShowChapterOnScreen showChapterOnScreen;
     private final ReadVerses readVerses;
+    private final ListVersesOnScreen listVersesOnScreen;
 
     /**
      * Constructor method
@@ -30,6 +30,7 @@ public class App extends AbstractApp implements ChapterChoices {
      * @param showBookOnScreen ShowBookOnScreen
      * @param listChaptersOnScreen ListChaptersOnScreen
      * @param showChapterOnScreen ShowChapterOnScreen
+     * @param readVerses ReadVerses
      */
     public App(
         ListBiblesOnScreen listBiblesOnScreen,
@@ -38,7 +39,8 @@ public class App extends AbstractApp implements ChapterChoices {
         ShowBookOnScreen showBookOnScreen,
         ListChaptersOnScreen listChaptersOnScreen,
         ShowChapterOnScreen showChapterOnScreen,
-        ReadVerses readVerses
+        ReadVerses readVerses,
+        ListVersesOnScreen listVersesOnScreen
     ) {
         this.listBiblesOnScreen = listBiblesOnScreen;
         this.showBibleOnScreen = showBibleOnScreen;
@@ -47,6 +49,7 @@ public class App extends AbstractApp implements ChapterChoices {
         this.listChaptersOnScreen = listChaptersOnScreen;
         this.showChapterOnScreen = showChapterOnScreen;
         this.readVerses = readVerses;
+        this.listVersesOnScreen = listVersesOnScreen;
     }
 
     /**
@@ -81,6 +84,7 @@ public class App extends AbstractApp implements ChapterChoices {
                 this.readVerses.run(chapter);
                 break;
             case VERSE_ONLY_CHOICE:
+                this.showAllVerses(chapter);
                 break;
         }
     }
@@ -147,6 +151,17 @@ public class App extends AbstractApp implements ChapterChoices {
         this.message("2. Escolher somente um versículo");
 
         return this.inputId();
+    }
+
+    /**
+     * Show all verses
+     *
+     * @param chapter
+     */
+    protected void showAllVerses(Chapter chapter)
+    {
+        this.message("Escolha o versículo:");
+        this.listVersesOnScreen.run(chapter);
     }
 
     /**
