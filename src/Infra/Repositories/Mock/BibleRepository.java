@@ -22,4 +22,15 @@ public class BibleRepository implements Domain.Api.Repositories.BibleRepository 
 
         return bibles;
     }
+
+    /**
+     * Load bible by id
+     *
+     * @param id int
+     * @return Bible
+     */
+    @Override
+    public Bible loadById(int id) {
+        return new Bible(2,"João Ferreira de Almeida Atualizada");
+    }
 }
