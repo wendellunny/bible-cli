@@ -3,7 +3,7 @@ package Domain.UseCases;
 import Domain.Api.Repositories.BookRepository;
 import Domain.Entities.Book;
 
-class AccessBook {
+public class AccessBook {
 
     protected BookRepository bookRepository;
 
