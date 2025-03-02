@@ -21,12 +21,15 @@ public class ShowBibleOnScreen
      * Run show bible on screen command
      *
      * @param bibleId int
+     * @return Bible
      */
-    public void run(int bibleId)
+    public Bible run(int bibleId)
     {
         Bible bible = this.accessBible.handle(bibleId);
 
         System.out.println("Tradução escolhida: " + bible.getTranslation());
         System.out.println();
+
+        return bible;
     }
 }
