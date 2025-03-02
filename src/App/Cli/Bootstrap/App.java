@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 public class App extends AbstractApp implements ChapterChoices {
 
-
     private final ListBiblesOnScreen listBiblesOnScreen;
     private final ShowBibleOnScreen showBibleOnScreen;
     private final ListBooksOnScreen listBooksOnScreen;
@@ -20,6 +19,7 @@ public class App extends AbstractApp implements ChapterChoices {
     private final ShowChapterOnScreen showChapterOnScreen;
     private final ReadVerses readVerses;
     private final ListVersesOnScreen listVersesOnScreen;
+    private final ShowVerseOnScreen showVerseOnScreen;
 
     /**
      * Constructor method
@@ -31,6 +31,8 @@ public class App extends AbstractApp implements ChapterChoices {
      * @param listChaptersOnScreen ListChaptersOnScreen
      * @param showChapterOnScreen ShowChapterOnScreen
      * @param readVerses ReadVerses
+     * @param listVersesOnScreen ListVersesOnScreen
+     * @param showVerseOnScreen ShowVerseOnScreen
      */
     public App(
         ListBiblesOnScreen listBiblesOnScreen,
@@ -40,7 +42,8 @@ public class App extends AbstractApp implements ChapterChoices {
         ListChaptersOnScreen listChaptersOnScreen,
         ShowChapterOnScreen showChapterOnScreen,
         ReadVerses readVerses,
-        ListVersesOnScreen listVersesOnScreen
+        ListVersesOnScreen listVersesOnScreen,
+        ShowVerseOnScreen showVerseOnScreen
     ) {
         this.listBiblesOnScreen = listBiblesOnScreen;
         this.showBibleOnScreen = showBibleOnScreen;
@@ -50,6 +53,7 @@ public class App extends AbstractApp implements ChapterChoices {
         this.showChapterOnScreen = showChapterOnScreen;
         this.readVerses = readVerses;
         this.listVersesOnScreen = listVersesOnScreen;
+        this.showVerseOnScreen = showVerseOnScreen;
     }
 
     /**
@@ -82,9 +86,13 @@ public class App extends AbstractApp implements ChapterChoices {
         switch (readChoice) {
             case FULL_CHAPTER_CHOICE:
                 this.readVerses.run(chapter);
+
                 break;
             case VERSE_ONLY_CHOICE:
                 this.showAllVerses(chapter);
+                int verseNumber = this.inputId();
+                this.showVerseOnScreen.run(chapter, verseNumber);
+
                 break;
         }
     }

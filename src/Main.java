@@ -36,6 +36,7 @@ public class Main {
         Domain.Api.Repositories.VerseRepository verseRepository = new VerseRepository();
         ListVerses listVerses = new ListVerses(verseRepository);
         ReadVerses readVerses = new ReadVerses(listVerses);
+        ListVersesOnScreen listVersesOnScreen = new ListVersesOnScreen(listVerses);
 
         AbstractApp app = new App.Cli.Bootstrap.App(
             listBiblesOnScreen,
@@ -44,7 +45,8 @@ public class Main {
             showBookOnScreen,
             listChaptersOnScreen,
             showChapterOnScreen,
-            readVerses
+            readVerses,
+            listVersesOnScreen
         );
 
         app.run();
