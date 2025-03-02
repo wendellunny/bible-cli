@@ -3,6 +3,7 @@ package App.Cli.Bootstrap;
 import App.Cli.Command.ListBiblesOnScreen;
 import App.AbstractApp;
 import App.Cli.Command.ShowBibleOnScreen;
+import Domain.Entities.Bible;
 
 import java.io.IOException;
 
@@ -36,7 +37,7 @@ public class App extends AbstractApp {
         this.showAllBibles();
 
         bibleId = this.inputBibleId();
-        this.showBibleOnScreen.run(bibleId);
+        Bible bible = this.showBibleOnScreen.run(bibleId);
     }
 
     /**
