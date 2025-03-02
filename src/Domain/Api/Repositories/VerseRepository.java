@@ -14,4 +14,13 @@ public interface VerseRepository {
      * @return Verse[]
      */
     public List<Verse> fetchByChapter(Chapter chapter);
+
+    /**
+     * Load verse by number
+     *
+     * @param chapter Chapter
+     * @param number int
+     * @return Verse
+     */
+    public Verse loadByNumber(Chapter chapter, int number);
 }
