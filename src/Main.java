@@ -2,7 +2,9 @@ import App.AbstractApp;
 import App.Cli.Command.ListBiblesOnScreen;
 import App.Cli.Command.ListBooksOnScreen;
 import App.Cli.Command.ShowBibleOnScreen;
+import App.Cli.Command.ShowBookOnScreen;
 import Domain.UseCases.AccessBible;
+import Domain.UseCases.AccessBook;
 import Domain.UseCases.ListBibles;
 import Domain.UseCases.ListBooks;
 import Infra.Repositories.Mock.BibleRepository;
@@ -25,10 +27,14 @@ public class Main {
         ListBooks listBooks = new ListBooks(bookRepository);
         ListBooksOnScreen listBooksOnScreen = new ListBooksOnScreen(listBooks);
 
+        AccessBook accessBook = new AccessBook(bookRepository);
+        ShowBookOnScreen showBookOnScreen = new ShowBookOnScreen(accessBook);
+
         AbstractApp app = new App.Cli.Bootstrap.App(
             listBiblesOnScreen,
             showBibleOnScreen,
-            listBooksOnScreen
+            listBooksOnScreen,
+            showBookOnScreen
         );
 
         app.run();
