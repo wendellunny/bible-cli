@@ -9,6 +9,7 @@ import Domain.Entities.Bible;
 import Domain.Entities.Book;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class App extends AbstractApp {
     private final ListBiblesOnScreen listBiblesOnScreen;
@@ -53,6 +54,7 @@ public class App extends AbstractApp {
         this.showAllBooks(bible);
 
         bookId = this.inputId();
+        System.out.println(bookId);
         Book book = this.showBookOnScreen.run(bookId);
 
     }
@@ -81,11 +83,8 @@ public class App extends AbstractApp {
      */
     protected int inputId()
     {
-        try {
-            return System.in.read();
-        } catch (IOException e) {
-            return 0;
-        }
+        Scanner scan = new Scanner(System.in);
+        return  scan.nextInt();
     }
 
     /**
