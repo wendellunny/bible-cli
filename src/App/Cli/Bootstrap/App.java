@@ -1,5 +1,6 @@
 package App.Cli.Bootstrap;
 
+import App.Cli.Api.ChapterChoices;
 import App.Cli.Command.*;
 import App.AbstractApp;
 import Domain.Entities.Bible;
@@ -9,9 +10,8 @@ import Domain.Entities.Chapter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class App extends AbstractApp {
-    private static final int FULL_CHAPTER_CHOICE = 1;
-    private static final int VERSE_ONLY_CHOICE = 2;
+public class App extends AbstractApp implements ChapterChoices {
+
 
     private final ListBiblesOnScreen listBiblesOnScreen;
     private final ShowBibleOnScreen showBibleOnScreen;
@@ -74,11 +74,7 @@ public class App extends AbstractApp {
         chapterNumber = this.inputId();
         Chapter chapter = this.showChapterOnScreen.run(book, chapterNumber);
 
-        this.message("Escolha o que quer fazer: ");
-        this.message("1. Ler capítulo completo: ");
-        this.message("2. Escolher somente um versículo");
-
-        readChoice = this.inputId();
+        readChoice = this.scanChapterChoice();
 
         switch (readChoice) {
             case FULL_CHAPTER_CHOICE:
@@ -128,10 +124,29 @@ public class App extends AbstractApp {
         this.listBooksOnScreen.run(bible);
     }
 
+    /**
+     * Sho all chapters
+     *
+     * @param book Book
+     */
     protected void showAllChapters(Book book)
     {
         this.message("Escolha o capítulo");
         this.listChaptersOnScreen.run(book);
+    }
+
+    /**
+     * Scan chapter choise
+     *
+     * @return int
+     */
+    protected int scanChapterChoice()
+    {
+        this.message("Escolha o que quer fazer: ");
+        this.message("1. Ler capítulo completo: ");
+        this.message("2. Escolher somente um versículo");
+
+        return this.inputId();
     }
 
     /**
