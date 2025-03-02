@@ -4,6 +4,7 @@ import App.Cli.Command.*;
 import App.AbstractApp;
 import Domain.Entities.Bible;
 import Domain.Entities.Book;
+import Domain.Entities.Chapter;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -14,6 +15,7 @@ public class App extends AbstractApp {
     private final ListBooksOnScreen listBooksOnScreen;
     private final ShowBookOnScreen showBookOnScreen;
     private final ListChaptersOnScreen listChaptersOnScreen;
+    private final ShowChapterOnScreen showChapterOnScreen;
 
     /**
      * Constructor method
@@ -29,13 +31,15 @@ public class App extends AbstractApp {
         ShowBibleOnScreen showBibleOnScreen,
         ListBooksOnScreen listBooksOnScreen,
         ShowBookOnScreen showBookOnScreen,
-        ListChaptersOnScreen listChaptersOnScreen
+        ListChaptersOnScreen listChaptersOnScreen,
+        ShowChapterOnScreen showChapterOnScreen
     ) {
         this.listBiblesOnScreen = listBiblesOnScreen;
         this.showBibleOnScreen = showBibleOnScreen;
         this.listBooksOnScreen = listBooksOnScreen;
         this.showBookOnScreen = showBookOnScreen;
         this.listChaptersOnScreen = listChaptersOnScreen;
+        this.showChapterOnScreen = showChapterOnScreen;
     }
 
     /**
@@ -46,6 +50,7 @@ public class App extends AbstractApp {
     {
         int bibleId;
         int bookId;
+        int chapterNumber;
 
         this.showWelcomeMessage();
         this.showAllBibles();
@@ -57,6 +62,9 @@ public class App extends AbstractApp {
         bookId = this.inputId();
         Book book = this.showBookOnScreen.run(bookId);
         this.showAllChapters(book);
+
+        chapterNumber = this.inputId();
+        Chapter chapter = this.showChapterOnScreen.run(book, chapterNumber);
     }
 
     /**
