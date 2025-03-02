@@ -14,4 +14,12 @@ public interface BookRepository
      * @return Book[]
      */
     public List<Book> fetchByBible(Bible bible);
+
+    /**
+     * Load book by id
+     *
+     * @param id int
+     * @return Book
+     */
+    public Book loadById(int id);
 }
