@@ -6,7 +6,7 @@ import Domain.Entities.Book;
 import java.util.ArrayList;
 import java.util.List;
 
-class BookRepository implements Domain.Api.Repositories.BookRepository {
+public class BookRepository implements Domain.Api.Repositories.BookRepository {
 
     /**
      * Fetch all books from bible
