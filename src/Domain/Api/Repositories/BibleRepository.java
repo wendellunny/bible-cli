@@ -12,4 +12,12 @@ public interface BibleRepository
      * @return Bible[]
      */
     public List<Bible> fetchAll();
+
+    /**
+     * Load bible by id
+     *
+     * @param id int
+     * @return Bible
+     */
+    public Bible loadById(int id);
 }
