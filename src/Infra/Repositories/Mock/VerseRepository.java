@@ -52,4 +52,21 @@ public class VerseRepository implements Domain.Api.Repositories.VerseRepository 
 
         return verses;
     }
+
+    /**
+     * Load verse by number
+     *
+     * @param chapter Chapter
+     * @param number  int
+     * @return Verse
+     */
+    @Override
+    public Verse loadByNumber(Chapter chapter, int number) {
+        return new Verse(
+            3,
+            3,
+            "Disse Deus: Haja luz; e houve luz",
+            chapter
+        );
+    }
 }
