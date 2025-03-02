@@ -38,6 +38,9 @@ public class Main {
         ReadVerses readVerses = new ReadVerses(listVerses);
         ListVersesOnScreen listVersesOnScreen = new ListVersesOnScreen(listVerses);
 
+        AccessVerse accessVerse = new AccessVerse(verseRepository);
+        ShowVerseOnScreen showVerseOnScreen = new ShowVerseOnScreen(accessVerse);
+
         AbstractApp app = new App.Cli.Bootstrap.App(
             listBiblesOnScreen,
             showBibleOnScreen,
@@ -46,7 +49,8 @@ public class Main {
             listChaptersOnScreen,
             showChapterOnScreen,
             readVerses,
-            listVersesOnScreen
+            listVersesOnScreen,
+            showVerseOnScreen
         );
 
         app.run();
