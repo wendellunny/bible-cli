@@ -10,12 +10,16 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class App extends AbstractApp {
+    private static final int FULL_CHAPTER_CHOICE = 1;
+    private static final int VERSE_ONLY_CHOICE = 2;
+
     private final ListBiblesOnScreen listBiblesOnScreen;
     private final ShowBibleOnScreen showBibleOnScreen;
     private final ListBooksOnScreen listBooksOnScreen;
     private final ShowBookOnScreen showBookOnScreen;
     private final ListChaptersOnScreen listChaptersOnScreen;
     private final ShowChapterOnScreen showChapterOnScreen;
+    private final ReadVerses readVerses;
 
     /**
      * Constructor method
@@ -25,6 +29,7 @@ public class App extends AbstractApp {
      * @param listBooksOnScreen ListBooksOnScreen
      * @param showBookOnScreen ShowBookOnScreen
      * @param listChaptersOnScreen ListChaptersOnScreen
+     * @param showChapterOnScreen ShowChapterOnScreen
      */
     public App(
         ListBiblesOnScreen listBiblesOnScreen,
@@ -32,7 +37,8 @@ public class App extends AbstractApp {
         ListBooksOnScreen listBooksOnScreen,
         ShowBookOnScreen showBookOnScreen,
         ListChaptersOnScreen listChaptersOnScreen,
-        ShowChapterOnScreen showChapterOnScreen
+        ShowChapterOnScreen showChapterOnScreen,
+        ReadVerses readVerses
     ) {
         this.listBiblesOnScreen = listBiblesOnScreen;
         this.showBibleOnScreen = showBibleOnScreen;
@@ -40,6 +46,7 @@ public class App extends AbstractApp {
         this.showBookOnScreen = showBookOnScreen;
         this.listChaptersOnScreen = listChaptersOnScreen;
         this.showChapterOnScreen = showChapterOnScreen;
+        this.readVerses = readVerses;
     }
 
     /**
@@ -51,6 +58,7 @@ public class App extends AbstractApp {
         int bibleId;
         int bookId;
         int chapterNumber;
+        int readChoice;
 
         this.showWelcomeMessage();
         this.showAllBibles();
@@ -65,6 +73,20 @@ public class App extends AbstractApp {
 
         chapterNumber = this.inputId();
         Chapter chapter = this.showChapterOnScreen.run(book, chapterNumber);
+
+        this.message("Escolha o que quer fazer: ");
+        this.message("1. Ler capítulo completo: ");
+        this.message("2. Escolher somente um versículo");
+
+        readChoice = this.inputId();
+
+        switch (readChoice) {
+            case FULL_CHAPTER_CHOICE:
+                this.readVerses.run(chapter);
+                break;
+            case VERSE_ONLY_CHOICE:
+                break;
+        }
     }
 
     /**
