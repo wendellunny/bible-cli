@@ -4,6 +4,7 @@ import Domain.UseCases.*;
 import Infra.Repositories.Mock.BibleRepository;
 import Infra.Repositories.Mock.BookRepository;
 import Infra.Repositories.Mock.ChapterRepository;
+import Infra.Repositories.Mock.VerseRepository;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -32,13 +33,18 @@ public class Main {
         AccessChapter accessChapter = new AccessChapter(chapterRepository);
         ShowChapterOnScreen showChapterOnScreen = new ShowChapterOnScreen(accessChapter);
 
+        Domain.Api.Repositories.VerseRepository verseRepository = new VerseRepository();
+        ListVerses listVerses = new ListVerses(verseRepository);
+        ReadVerses readVerses = new ReadVerses(listVerses);
+
         AbstractApp app = new App.Cli.Bootstrap.App(
             listBiblesOnScreen,
             showBibleOnScreen,
             listBooksOnScreen,
             showBookOnScreen,
             listChaptersOnScreen,
-            showChapterOnScreen
+            showChapterOnScreen,
+            readVerses
         );
 
         app.run();
