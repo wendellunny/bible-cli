@@ -2,20 +2,26 @@ package App.Cli.Bootstrap;
 
 import App.Cli.Command.ListBiblesOnScreen;
 import App.AbstractApp;
+import App.Cli.Command.ShowBibleOnScreen;
 
 import java.io.IOException;
 
 public class App extends AbstractApp {
-    private ListBiblesOnScreen listBiblesOnScreen;
+    private final ListBiblesOnScreen listBiblesOnScreen;
+    private final ShowBibleOnScreen showBibleOnScreen;
 
     /**
      * Constructor method
      *
-     * @param listBiblesOnScreen
+     * @param listBiblesOnScreen ListBiblesOnScreen
+     * @param showBibleOnScreen ShowBibleOnScreen
      */
-    public App(ListBiblesOnScreen listBiblesOnScreen)
-    {
+    public App(
+        ListBiblesOnScreen listBiblesOnScreen,
+        ShowBibleOnScreen showBibleOnScreen
+    ) {
         this.listBiblesOnScreen = listBiblesOnScreen;
+        this.showBibleOnScreen = showBibleOnScreen;
     }
 
     /**
@@ -24,14 +30,43 @@ public class App extends AbstractApp {
     @Override
     public void run()
     {
+        int bibleId;
+
+        this.showWelcomeMessage();
+        this.showAllBibles();
+
+        bibleId = this.inputBibleId();
+        this.showBibleOnScreen.run(bibleId);
+    }
+
+    /**
+     * Show Welcome message
+     */
+    protected void showWelcomeMessage()
+    {
         this.message(this.getWelcome());
+    }
+
+    /**
+     * Show all bibles
+     */
+    protected void showAllBibles()
+    {
         this.message("Qual tradução vai querer ler hoje?");
         this.listBiblesOnScreen.run();
+    }
 
+    /**
+     * Input bible id
+     *
+     * @return int
+     */
+    protected int inputBibleId()
+    {
         try {
-            int bibleId = System.in.read();
+            return System.in.read();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            return 0;
         }
     }
 
