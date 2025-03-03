@@ -1,15 +1,32 @@
 import App.AbstractApp;
 import App.Cli.Command.*;
 import Domain.UseCases.*;
+import Infra.Api.Drivers.DbDriver;
+import Infra.Drivers.DB.Mysql;
 import Infra.Repositories.Mock.BibleRepository;
 import Infra.Repositories.Mock.BookRepository;
 import Infra.Repositories.Mock.ChapterRepository;
 import Infra.Repositories.Mock.VerseRepository;
+import com.mysql.cj.xdevapi.PreparableStatement;
+import io.github.cdimascio.dotenv.Dotenv;
+
+import java.sql.*;
+import java.util.List;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+        Dotenv env = Dotenv.configure()
+            .directory("./")
+            .ignoreIfMalformed()
+            .ignoreIfMissing()
+            .load();
+
+        DbDriver dbDriver = new Mysql(env);
+
+        dbDriver.connect();
+
         Domain.Api.Repositories.BibleRepository bibleRepository = new BibleRepository();
         ListBibles listBibles = new ListBibles(bibleRepository);
         ListBiblesOnScreen listBiblesOnScreen = new ListBiblesOnScreen(
@@ -54,5 +71,7 @@ public class Main {
         );
 
         app.run();
+
+        dbDriver.close();
     }
 }
