@@ -1,5 +1,6 @@
 package App.Cli.Command;
 
+import Domain.Entities.Bible;
 import Domain.Entities.Book;
 import Domain.UseCases.AccessBook;
 
@@ -23,9 +24,9 @@ public class ShowBookOnScreen
      * @param id int
      * @return Book
      */
-    public Book run(int id)
+    public Book run(Bible bible, int id)
     {
-        Book book = this.accessBook.handle(id);
+        Book book = this.accessBook.handle(bible, id);
 
         System.out.println("O livro escolhido foi: " + book.getName());
         System.out.println();

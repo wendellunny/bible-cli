@@ -19,11 +19,11 @@ public class BookRepository implements Domain.Api.Repositories.BookRepository {
     {
         List<Book> books = new ArrayList<Book>();
 
-        books.add(new Book(1, "Gênesis"));
-        books.add(new Book(2, "Êxodo"));
-        books.add(new Book(3, "Levítico"));
-        books.add(new Book(4, "Números"));
-        books.add(new Book(5, "Deutoronômio"));
+        books.add(new Book(1, "Gênesis", bible));
+        books.add(new Book(2, "Êxodo", bible));
+        books.add(new Book(3, "Levítico", bible));
+        books.add(new Book(4, "Números", bible));
+        books.add(new Book(5, "Deutoronômio", bible));
 
         return books;
     }
@@ -35,7 +35,7 @@ public class BookRepository implements Domain.Api.Repositories.BookRepository {
      * @return Book
      */
     @Override
-    public Book loadById(int id) {
-        return new Book(1, "Gênesis");
+    public Book loadById(Bible bible, int id) {
+        return new Book(1, "Gênesis", bible);
     }
 }

@@ -31,8 +31,15 @@ public class ListChaptersOnScreen {
 
         String list = "";
 
+        int i = 1;
         for (Chapter chapter : chapters) {
             list += "\"" + chapter.getNumber() + "\", ";
+
+            if (i % 8 == 0) {
+                list += "\n";
+            }
+
+            i++;
         }
 
         System.out.println(list);

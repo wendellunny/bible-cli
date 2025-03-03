@@ -75,7 +75,7 @@ public class App extends AbstractApp implements ChapterChoices {
         this.showAllBooks(bible);
 
         bookId = this.inputId();
-        Book book = this.showBookOnScreen.run(bookId);
+        Book book = this.showBookOnScreen.run(bible, bookId);
         this.showAllChapters(book);
 
         chapterNumber = this.inputId();

@@ -21,5 +21,5 @@ public interface BookRepository
      * @param id int
      * @return Book
      */
-    public Book loadById(int id);
+    public Book loadById(Bible bible, int id);
 }

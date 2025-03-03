@@ -11,10 +11,11 @@ public class Book {
      * @param id int
      * @param name String
      */
-    public Book(int id, String name)
+    public Book(int id, String name, Bible bible)
     {
         this.id = id;
         this.name = name;
+        this.bible = bible;
     }
 
     /**

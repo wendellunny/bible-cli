@@ -1,6 +1,7 @@
 package Domain.UseCases;
 
 import Domain.Api.Repositories.BookRepository;
+import Domain.Entities.Bible;
 import Domain.Entities.Book;
 
 public class AccessBook {
@@ -23,8 +24,8 @@ public class AccessBook {
      * @param id int
      * @return Book
      */
-    public Book handle(int id)
+    public Book handle(Bible bible, int id)
     {
-        return this.bookRepository.loadById(id);
+        return this.bookRepository.loadById(bible,id);
     }
 }
