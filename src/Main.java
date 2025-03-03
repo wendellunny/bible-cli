@@ -3,11 +3,10 @@ import App.Cli.Command.*;
 import Domain.UseCases.*;
 import Infra.Api.Drivers.DbDriver;
 import Infra.Drivers.DB.Mysql;
-import Infra.Repositories.Mock.BibleRepository;
-import Infra.Repositories.Mock.BookRepository;
-import Infra.Repositories.Mock.ChapterRepository;
-import Infra.Repositories.Mock.VerseRepository;
-import com.mysql.cj.xdevapi.PreparableStatement;
+import Infra.Repositories.BibleRepository;
+import Infra.Repositories.BookRepository;
+import Infra.Repositories.ChapterRepository;
+import Infra.Repositories.VerseRepository;
 import io.github.cdimascio.dotenv.Dotenv;
 
 import java.sql.*;
@@ -27,7 +26,7 @@ public class Main {
 
         dbDriver.connect();
 
-        Domain.Api.Repositories.BibleRepository bibleRepository = new BibleRepository();
+        Domain.Api.Repositories.BibleRepository bibleRepository = new BibleRepository(dbDriver);
         ListBibles listBibles = new ListBibles(bibleRepository);
         ListBiblesOnScreen listBiblesOnScreen = new ListBiblesOnScreen(
             listBibles
@@ -36,21 +35,21 @@ public class Main {
         AccessBible accessBible = new AccessBible(bibleRepository);
         ShowBibleOnScreen showBibleOnScreen = new ShowBibleOnScreen(accessBible);
 
-        Domain.Api.Repositories.BookRepository bookRepository = new BookRepository();
+        Domain.Api.Repositories.BookRepository bookRepository = new BookRepository(dbDriver);
         ListBooks listBooks = new ListBooks(bookRepository);
         ListBooksOnScreen listBooksOnScreen = new ListBooksOnScreen(listBooks);
 
         AccessBook accessBook = new AccessBook(bookRepository);
         ShowBookOnScreen showBookOnScreen = new ShowBookOnScreen(accessBook);
 
-        Domain.Api.Repositories.ChapterRepository chapterRepository = new ChapterRepository();
+        Domain.Api.Repositories.ChapterRepository chapterRepository = new ChapterRepository(dbDriver);
         ListChapters listChapters = new ListChapters(chapterRepository);
         ListChaptersOnScreen listChaptersOnScreen = new ListChaptersOnScreen(listChapters);
 
         AccessChapter accessChapter = new AccessChapter(chapterRepository);
         ShowChapterOnScreen showChapterOnScreen = new ShowChapterOnScreen(accessChapter);
 
-        Domain.Api.Repositories.VerseRepository verseRepository = new VerseRepository();
+        Domain.Api.Repositories.VerseRepository verseRepository = new VerseRepository(dbDriver);
         ListVerses listVerses = new ListVerses(verseRepository);
         ReadVerses readVerses = new ReadVerses(listVerses);
         ListVersesOnScreen listVersesOnScreen = new ListVersesOnScreen(listVerses);
